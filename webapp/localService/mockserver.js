@@ -6,12 +6,18 @@ sap.ui.define(
     const originPath = "sapui5/project";
 
     async function getRequests() {
+      const mockdata = `${originPath}/localService/mockdata`;
+
+      const [users] = await Promise.all([
+        ReaderJson.getJson(`${mockdata}/users.json`),
+      ]);
+
       return [
         {
           method: "GET",
-          path: /.+/,
+          path: "getUsers",
           response: (oXhr) => {
-            oXhr.respondJSON(200, {}, {});
+            oXhr.respondJSON(200, {}, users);
             return true;
           },
         },

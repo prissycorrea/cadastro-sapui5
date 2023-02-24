@@ -18,7 +18,7 @@
 					search=".filterReports()"
 					showClearButton="true"
 					showClearOnFB="true"
-					clear=".clearReportFilters()"
+					clear=""
 					useToolbar="false"
 					showFilterConfiguration="false"
 				>
@@ -32,7 +32,7 @@
 							visibleInFilterBar="true"
 						>
 							<fb:control>
-								<Input/>
+								<Input id="nameFilterId"/>
 							</fb:control>
 						</fb:FilterGroupItem>
 						<fb:FilterGroupItem
@@ -43,7 +43,7 @@
 							visibleInFilterBar="true"
 						>
 							<fb:control>
-								<Input/>
+								<Input id="emailFilterId"/>
 							</fb:control>
 						</fb:FilterGroupItem>
 						<fb:FilterGroupItem
@@ -54,11 +54,23 @@
 							visibleInFilterBar="true"
 						>
 							<fb:control>
-								<Select>
+								<Select id="statusFilterId">
 									<items>
-										<core:Item text="Todas as opções"/>
-										<core:Item text="Ativo"/>
-										<core:Item text="Inativo"/>
+										<core:Item
+											id="allOptions"
+											key=""
+											text="Todas as opções"
+										/>
+										<core:Item
+											id="ativoId"
+											key="ativo"
+											text="Ativo"
+										/>
+										<core:Item
+											id="inativoId"
+											key="inativo"
+											text="Inativo"
+										/>
 									</items>
 								</Select>
 							</fb:control>
@@ -68,6 +80,7 @@
 			</content>
 			<Table
 				id="idProductsTable"
+				class="sapUiLargeMarginTop"
 				inset="false"
 				items="{
 					path: '/ProductCollection',
@@ -77,56 +90,70 @@
 				}"
 			>
 				<headerToolbar>
-					<OverflowToolbar>
+					<OverflowToolbar id="TableToolbar">
 						<content>
 							<Title
+								id="tableId"
 								text="Usuários"
 								level="H2"
 							/>
-							<ToolbarSpacer/>
+							<ToolbarSpacer id="spacer"/>
 							<Button
+								id="createBtn"
 								text="Novo usuário"
 								icon="sap-icon://add"
 								type="Emphasized"
+								press=".openForm"
 							/>
 						</content>
 					</OverflowToolbar>
 				</headerToolbar>
 				<columns>
-					<Column>
-						<Text text="Nome"/>
+					<Column id="nameColumns">
+						<Text
+							id="nameText"
+							text="Nome"
+						/>
 					</Column>
-					<Column>
-						<Text text="Sobrenome"/>
-					</Column>
-					<Column>
-						<Text text="E-mail"/>
+					<Column id="emailColumn">
+						<Text
+							id="emailText"
+							text="E-mail"
+						/>
 					</Column>
 					<Column>
 						<Text text="Status"/>
 					</Column>
-					<Column>
+					<Column id="editColumn">
 						<Text text="Editar"/>
 					</Column>
-					<Column>
+					<Column id="deleteColumn">
 						<Text text="Deletar"/>
 					</Column>
 				</columns>
 				<items>
-					<ColumnListItem>
+					<ColumnListItem id="listItem">
 						<cells>
-							<Text text="{nome}"/>
-							<Text text="{sobrenome}"/>
-							<Text text="{email}"/>
-							<Text text="{status}"/>
+							<Text
+								id="nameCell"
+								text="{nome}"
+							/>
+							<Text
+								id="emailCell"
+								text="{email}"
+							/>
+							<Text
+								id="statusCell"
+								text="{status}"
+							/>
 							<Text text="{edit}"/>
 							<Text text="{delete}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
 			</Table>
-			<Toolbar>
-				<ToolbarSpacer/>
+			<Toolbar id="footer">
+				<ToolbarSpacer id="spacerFooter"/>
 				<content>
 					<Button
 						id="prevButton"

@@ -1,0 +1,58 @@
+<c:FragmentDefinition
+	xmlns:form="sap.ui.layout.form"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+	<Dialog
+		id="dialogId"
+		type="Message"
+		contentWidth="400px"
+		title="Formulário"
+	>
+		<content>
+			<form:Form id="form">
+				<form:layout>
+					<form:ResponsiveGridLayout
+						id="responsiveGrid"
+						labelSpanL="3"
+						labelSpanM="2"
+					/>
+				</form:layout>
+				<form:formContainers>
+					<form:FormContainer id="container">
+						<form:formElements>
+							<form:FormElement
+								id="nameElement"
+								label="Nome"
+							>
+								<form:fields>
+									<Input id="nameForm"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement
+								id="emailElement"
+								label="E-mail"
+							>
+								<form:fields>
+									<Input id="emailForm"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+					</form:FormContainer>
+				</form:formContainers>
+			</form:Form>
+		</content>
+		<beginButton>
+			<Button
+				text="Salvar"
+				type="Emphasized"
+			/>
+		</beginButton>
+		<endButton>
+			<Button
+				text="Cancelar"
+				press=".closeForm"
+			/>
+		</endButton>
+	</Dialog>
+</c:FragmentDefinition>
