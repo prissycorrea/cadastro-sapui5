@@ -1,7 +1,159 @@
-<mvc:View controllerName="sapui5.project.controller.Home"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+<mvc:View
+	controllerName="sapui5.project.controller.Home"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core"
+>
+	<Shell appWidthLimited="false">
+		<Page
+			id="page"
+			title="{i18n>title}"
+			class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+		>
+			<content>
+				<fb:FilterBar
+					id="filterBar"
+					search=".filterReports()"
+					showClearButton="true"
+					showClearOnFB="true"
+					clear=".clearReportFilters()"
+					useToolbar="false"
+					showFilterConfiguration="false"
+				>
+					<fb:filterGroupItems>
+						<fb:FilterGroupItem
+							id="teste"
+							groupName="__$INTERNAL$"
+							name="A"
+							label="Nome"
+							partOfCurrentVariant="true"
+							visibleInFilterBar="true"
+						>
+							<fb:control>
+								<Input/>
+							</fb:control>
+						</fb:FilterGroupItem>
+						<fb:FilterGroupItem
+							groupName="__$INTERNAL$"
+							name="B"
+							label="E-mail"
+							partOfCurrentVariant="true"
+							visibleInFilterBar="true"
+						>
+							<fb:control>
+								<Input/>
+							</fb:control>
+						</fb:FilterGroupItem>
+						<fb:FilterGroupItem
+							groupName="__$INTERNAL$"
+							name="C"
+							label="E-mail"
+							partOfCurrentVariant="true"
+							visibleInFilterBar="true"
+						>
+							<fb:control>
+								<Select>
+									<items>
+										<core:Item text="Todas as opções"/>
+										<core:Item text="Ativo"/>
+										<core:Item text="Inativo"/>
+									</items>
+								</Select>
+							</fb:control>
+						</fb:FilterGroupItem>
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+			</content>
+			<Table
+				id="idProductsTable"
+				inset="false"
+				items="{
+					path: '/ProductCollection',
+					sorter: {
+						path: 'Name'
+					}
+				}"
+			>
+				<headerToolbar>
+					<OverflowToolbar>
+						<content>
+							<Title
+								text="Usuários"
+								level="H2"
+							/>
+							<ToolbarSpacer/>
+							<Button
+								text="Novo usuário"
+								icon="sap-icon://add"
+								type="Emphasized"
+							/>
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="Nome"/>
+					</Column>
+					<Column>
+						<Text text="Sobrenome"/>
+					</Column>
+					<Column>
+						<Text text="E-mail"/>
+					</Column>
+					<Column>
+						<Text text="Status"/>
+					</Column>
+					<Column>
+						<Text text="Editar"/>
+					</Column>
+					<Column>
+						<Text text="Deletar"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{nome}"/>
+							<Text text="{sobrenome}"/>
+							<Text text="{email}"/>
+							<Text text="{status}"/>
+							<Text text="{edit}"/>
+							<Text text="{delete}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<content>
+					<Button
+						id="prevButton"
+						enabled="false"
+						icon="sap-icon://navigation-left-arrow"
+						press=""
+					/>
+					<Input
+						id="pageInput"
+						editable="true"
+						value="{=${PageInfo>/currentPage}}"
+						width="50px"
+						submit=""
+						tooltip="{i18n>TooltipPageInput}"
+					/>
+					<Text
+						id="totalPageId"
+						text="de 0"
+					/>
+					<Button
+						id="nextButton"
+						enabled="false"
+						icon="sap-icon://navigation-right-arrow"
+						press=""
+					/>
+				</content>
+			</Toolbar>
+		</Page>
+	</Shell>
 </mvc:View>
