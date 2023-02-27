@@ -11,6 +11,7 @@ sap.ui.define(
 
     const USERS_MODEL = "users";
     const SEARCH_STATUS_MODEL = "searchStatus";
+    const USER_MODEL = "user";
 
     return BaseController.extend("sapui5.project.controller.Home", {
       _getStatus(type) {
@@ -22,9 +23,9 @@ sap.ui.define(
         return status[type];
       },
 
-      async _userUpdate(page) {
+      async _userUpdate(page, name, email, statusId) {
         const { Users, pageNumber, totalPages, totalItems } =
-          await UserInfo.getUsers(page);
+          await UserInfo.getUsers(page, name, email, statusId);
 
         Users.map((item) => {
           item.statusColor = this._getStatus(item.status.toUpperCase()).color;
@@ -36,12 +37,21 @@ sap.ui.define(
           currentPage: pageNumber,
           totalPages,
           totalItems,
+          name,
+          email,
+          statusId
         });
 
         this._enabledPaginationButton(page, totalPages);
       },
 
       async onInit() {
+        const oBundle = this.getOwnerComponent()
+        .getModel("i18n")
+        .getResourceBundle();
+
+        this._updateFilterTexts(oBundle);
+
         this.refresh(this._onDisplay);
       },
 
@@ -77,6 +87,39 @@ sap.ui.define(
         }
       },
 
+      editUser(oEvent) {
+        const user = oEvent
+        .getSource()
+        .getBindingContext(USERS_MODEL)
+        .getObject();
+
+        this.setModel(USER_MODEL, user);
+        this.openDialog("Form", "dialogId", "sapui5.project.fragments.Form");
+      },
+
+      async save() {
+        const that = this;
+        const user = this.getModelValues(USER_MODEL);
+
+        try {
+          if (user.id) await UserInfo.updateUser(user);
+          else await UserInfo.addUser(user);
+
+          MessageBox.success("Operação realizada com sucesso", {
+            actions: [MessageBox.Action.OK],
+            emphasizedAction: MessageBox.Action.OK,
+            onClose: function () {
+              that.closeForm();
+            }
+          });
+
+        } catch (err) {
+          this.messageBox("error", "Ocorreu um erro ao realizar a operação. Tente novamente.")
+        }
+
+        //this.messageBox("success", "Sucesso")
+      },
+
       async deleteUser(userId) {
         MessageBox.confirm(
           "Deseja realmente deletar o usuário?",
@@ -92,16 +135,42 @@ sap.ui.define(
         );
       },
 
+      searchUser() {
+        const {name, email, statusId} = this.getModelValues(SEARCH_STATUS_MODEL);
+
+        Delay.debounce(async () => await this._userUpdate(0, name, email, statusId), 500);
+      },
+
+      clearFilters() {
+        this.updateModel(SEARCH_STATUS_MODEL, {name: "", email: "", statusId: "-1"});
+      },
+
       openForm() {
         this.openDialog(
           "Formulário",
           "dialogId",
           "sapui5.project.fragments.Form"
         );
+
+        this.setModel(USER_MODEL, {name:"", email:"", statusId:0})
       },
 
       closeForm() {
         this.closeDialog("dialogId");
+      },
+
+      _updateFilterTexts(oBundle) {
+        const oFilter = this.byId("filterBar");
+
+        oFilter.addEventDelegate({
+          onAfterRendering: function (oEvent) {
+            const oButtonSearch = oEvent.srcControl._oSearchButton;
+            const oButtonClear = oEvent.srcControl._oClearButtonOnFB;
+
+            oButtonSearch.setText("Pesquisar");
+            oButtonClear.setText("Limpar filtros");
+          },
+        });
       },
     });
   }

@@ -1,7 +1,7 @@
 {
     "pageNumber": 1,
     "totalPages": 2,
-    "totalItems": 15,
+    "totalItems": 16,
     "Users": [
       {
         "id": 11,
@@ -37,6 +37,14 @@
         "email": "rsticklese@samsung.com",
         "statusId": 1,
         "status": "Inativo"
+      },
+      {
+        "id": 16,
+        "name": "Anne Smith",
+        "email": "asmith@gmail.com",
+        "statusId": 0,
+        "status": "Ativo"
       }
     ]
   }
+  

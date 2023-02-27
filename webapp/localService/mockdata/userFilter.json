@@ -1,0 +1,14 @@
+{
+    "pageNumber": 0,
+    "totalPages": 2,
+    "totalItems": 15,
+    "Users": [
+      {
+        "id": 1,
+        "name": "Monique Jobke",
+        "email": "mjobke0@ebay.co.uk",
+        "statusId": 0,
+        "status": "Ativo"
+      }
+    ]
+}

@@ -15,10 +15,10 @@
 			<content>
 				<fb:FilterBar
 					id="filterBar"
-					search=".filterReports()"
+					search=".searchUser"
 					showClearButton="true"
 					showClearOnFB="true"
-					clear=""
+					clear=".clearFilters"
 					useToolbar="false"
 					showFilterConfiguration="false"
 				>
@@ -32,7 +32,7 @@
 							visibleInFilterBar="true"
 						>
 							<fb:control>
-								<Input id="nameFilterId"/>
+								<Input id="nameFilterId" value="{path: 'searchStatus>/name'}"/>
 							</fb:control>
 						</fb:FilterGroupItem>
 						<fb:FilterGroupItem
@@ -43,7 +43,7 @@
 							visibleInFilterBar="true"
 						>
 							<fb:control>
-								<Input id="emailFilterId"/>
+								<Input id="emailFilterId" value="{path: 'searchStatus>/email'}"/>
 							</fb:control>
 						</fb:FilterGroupItem>
 						<fb:FilterGroupItem
@@ -54,21 +54,21 @@
 							visibleInFilterBar="true"
 						>
 							<fb:control>
-								<Select id="statusFilterId">
+								<Select id="statusFilterId" selectedKey="{path: 'searchStatus>/statusId'}">
 									<items>
 										<core:Item
 											id="allOptions"
-											key=""
+											key="-1"
 											text="Todas as opções"
 										/>
 										<core:Item
 											id="ativoId"
-											key="ativo"
+											key="0"
 											text="Ativo"
 										/>
 										<core:Item
 											id="inativoId"
-											key="inativo"
+											key="1"
 											text="Inativo"
 										/>
 									</items>
