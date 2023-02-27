@@ -30,9 +30,15 @@ sap.ui.define(
         });
       },
 
-      async getUsers() {
-        return this._request("getUsers");
+      async getUsers(page) {
+        const path = `getUsers?page=${page}`;
+        return this._request(path);
       },
+
+      async removeUser(id) {
+        const path = `delete?userId=${id}`;
+        return this._request(path);
+      }
     };
   }
 );

@@ -81,20 +81,14 @@
 			<Table
 				id="idProductsTable"
 				class="sapUiLargeMarginTop"
-				inset="false"
-				items="{
-					path: '/ProductCollection',
-					sorter: {
-						path: 'Name'
-					}
-				}"
+				items="{users>/}"
 			>
 				<headerToolbar>
 					<OverflowToolbar id="TableToolbar">
 						<content>
 							<Title
 								id="tableId"
-								text="Usuários"
+								text="Usuários ({searchStatus>/totalItems})"
 								level="H2"
 							/>
 							<ToolbarSpacer id="spacer"/>
@@ -136,18 +130,30 @@
 						<cells>
 							<Text
 								id="nameCell"
-								text="{nome}"
+								text="{users>name}"
 							/>
 							<Text
 								id="emailCell"
-								text="{email}"
+								text="{users>email}"
 							/>
-							<Text
-								id="statusCell"
-								text="{status}"
+							<core:Icon 
+								id="statusCell" 
+								src="{users>statusIcon}" 
+								color="{users>statusColor}"
+								tooltip="{users>status}"
 							/>
-							<Text text="{edit}"/>
-							<Text text="{delete}"/>
+							<Button
+								id="editBtn"
+								icon="sap-icon://edit"
+								type="Transparent"
+								press=".editUser"
+							/>
+							<Button
+								id="deleteBtn"
+								icon="sap-icon://delete"
+								press=".deleteUser(${users>id})"
+								type="Transparent"
+							/>
 						</cells>
 					</ColumnListItem>
 				</items>
@@ -157,27 +163,23 @@
 				<content>
 					<Button
 						id="prevButton"
-						enabled="false"
 						icon="sap-icon://navigation-left-arrow"
-						press=""
+						press=".changePage(-1)"
 					/>
 					<Input
 						id="pageInput"
-						editable="true"
-						value="{=${PageInfo>/currentPage}}"
+						value="{=${searchStatus>/currentPage}+1}"
 						width="50px"
-						submit=""
 						tooltip="{i18n>TooltipPageInput}"
 					/>
 					<Text
 						id="totalPageId"
-						text="de 0"
+						text="de {searchStatus>/totalPages}"
 					/>
 					<Button
 						id="nextButton"
-						enabled="false"
 						icon="sap-icon://navigation-right-arrow"
-						press=""
+						press=".changePage(1)"
 					/>
 				</content>
 			</Toolbar>

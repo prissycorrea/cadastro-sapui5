@@ -37,13 +37,14 @@
 									<Input id="emailForm"/>
 								</form:fields>
 							</form:FormElement>
-							<!--<form:FormElement>
+							<form:FormElement>
 								<form:fields>
-									<RadioButtonGroup>
-
+									<RadioButtonGroup id="statusForm" columns="4">
+										<RadioButton id="ativo" text="Ativo" key="1"/>
+										<RadioButton id="inativo" text="Inativo" key="2"/>
 									</RadioButtonGroup>
 								</form:fields>
-							</form:FormElement>-->
+							</form:FormElement>
 						</form:formElements>
 					</form:FormContainer>
 				</form:formContainers>

@@ -8,16 +8,33 @@ sap.ui.define(
     async function getRequests() {
       const mockdata = `${originPath}/localService/mockdata`;
 
-      const [users] = await Promise.all([
-        ReaderJson.getJson(`${mockdata}/users.json`),
+      const [usersFirstPage, usersSecondPage] = await Promise.all([
+        ReaderJson.getJson(`${mockdata}/usersFirstPage.json`),
+        ReaderJson.getJson(`${mockdata}/usersSecondPage.json`),
       ]);
 
       return [
         {
           method: "GET",
-          path: "getUsers",
+          path: /getUsers\?page=0?/,
           response: (oXhr) => {
-            oXhr.respondJSON(200, {}, users);
+            oXhr.respondJSON(200, {}, usersFirstPage);
+            return true;
+          },
+        },
+        {
+          method: "GET",
+          path: /getUsers\?page=1?/,
+          response: (oXhr) => {
+            oXhr.respondJSON(200, {}, usersSecondPage);
+            return true;
+          },
+        },
+        {
+          method: "DELETE",
+          path: /delete\?userId=(.+)?/,
+          response: (oXhr) => {
+            oXhr.respondJSON(204, {}, "");
             return true;
           },
         },
