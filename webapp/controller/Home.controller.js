@@ -4,9 +4,10 @@ sap.ui.define(
     "sapui5/project/utils/UserInfo",
     "sap/m/MessageBox",
     "sap/m/MessageToast",
+    "sapui5/project/utils/Delay",
   ],
 
-  function (BaseController, UserInfo, MessageBox, MessageToast) {
+  function (BaseController, UserInfo, MessageBox, MessageToast, Delay) {
     "use strict";
 
     const USERS_MODEL = "users";
