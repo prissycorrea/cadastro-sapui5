@@ -20,7 +20,7 @@ sap.ui.define(
           method: "GET",
           path: /getUsers\?page=0&name=(.+)?&email=(.+)?&statusId=(.+)?/,
           response: (oXhr) => {
-            if (oXhr.url.includes("Monique") || oXhr.url.includes("mjbke0") || oXhr.url.includes("statusId=0")) {
+            if (oXhr.url.includes("Monique") || oXhr.url.includes("mjobke0") || oXhr.url.includes("statusId=0")) {
               oXhr.respondJSON(200, {}, userFilter);
             } else {
               oXhr.respondJSON(200, {}, usersFirstPage);
