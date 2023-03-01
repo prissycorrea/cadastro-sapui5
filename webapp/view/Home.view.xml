@@ -38,7 +38,7 @@
 						<fb:FilterGroupItem
 							groupName="__$INTERNAL$"
 							name="B"
-							label="E-mail"
+							label="{i18n>inputEmail}"
 							partOfCurrentVariant="true"
 							visibleInFilterBar="true"
 						>
@@ -49,7 +49,7 @@
 						<fb:FilterGroupItem
 							groupName="__$INTERNAL$"
 							name="C"
-							label="E-mail"
+							label="{i18n>inputStatus}"
 							partOfCurrentVariant="true"
 							visibleInFilterBar="true"
 						>
@@ -64,12 +64,12 @@
 										<core:Item
 											id="ativoId"
 											key="0"
-											text="Ativo"
+											text="{i18n>userStatusActive}"
 										/>
 										<core:Item
 											id="inativoId"
 											key="1"
-											text="Inativo"
+											text="{i18n>userStatusInactive}"
 										/>
 									</items>
 								</Select>
@@ -88,13 +88,13 @@
 						<content>
 							<Title
 								id="tableId"
-								text="Usuários ({searchStatus>/totalItems})"
+								text="{i18n>tableTitle} ({searchStatus>/totalItems})"
 								level="H2"
 							/>
 							<ToolbarSpacer id="spacer"/>
 							<Button
 								id="createBtn"
-								text="Novo usuário"
+								text="{i18n>buttonNewUser}"
 								icon="sap-icon://add"
 								type="Emphasized"
 								press=".openForm"
@@ -106,23 +106,23 @@
 					<Column id="nameColumns">
 						<Text
 							id="nameText"
-							text="Nome"
+							text="{i18n>inputName}"
 						/>
 					</Column>
 					<Column id="emailColumn">
 						<Text
 							id="emailText"
-							text="E-mail"
+							text="{i18n>inputEmail}"
 						/>
 					</Column>
 					<Column>
-						<Text text="Status"/>
+						<Text text="{i18n>inputStatus}"/>
 					</Column>
 					<Column id="editColumn">
-						<Text text="Editar"/>
+						<Text text="{i18n>editColumn}"/>
 					</Column>
 					<Column id="deleteColumn">
-						<Text text="Deletar"/>
+						<Text text="{i18n>deleteColumn}"/>
 					</Column>
 				</columns>
 				<items>
