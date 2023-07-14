@@ -8,23 +8,31 @@ sap.ui.define(
     async function getRequests() {
       const mockdata = `${originPath}/localService/mockdata`;
 
-      const [usersFirstPage, usersSecondPage, user, userFilter] = await Promise.all([
-        ReaderJson.getJson(`${mockdata}/usersFirstPage.json`),
-        ReaderJson.getJson(`${mockdata}/usersSecondPage.json`),
-        ReaderJson.getJson(`${mockdata}/user.json`),
-        ReaderJson.getJson(`${mockdata}/userFilter.json`),
-      ]);
+      const [usersFirstPage, usersSecondPage, user, userFilter] =
+        await Promise.all([
+          ReaderJson.getJson(`${mockdata}/usersFirstPage.json`),
+          ReaderJson.getJson(`${mockdata}/usersSecondPage.json`),
+          ReaderJson.getJson(`${mockdata}/user.json`),
+          ReaderJson.getJson(`${mockdata}/userFilter.json`),
+        ]);
 
       return [
         {
           method: "GET",
           path: /getUsers\?page=0&name=(.+)?&email=(.+)?&statusId=(.+)?/,
           response: (oXhr) => {
-            if (oXhr.url.includes("Monique") || oXhr.url.includes("mjobke0") || oXhr.url.includes("statusId=0")) {
+            console.log(oXhr.url);
+
+            if (
+              oXhr.url.includes("Monique") ||
+              oXhr.url.includes("mjobke0") ||
+              oXhr.url.includes("statusId=0")
+            ) {
               oXhr.respondJSON(200, {}, userFilter);
             } else {
               oXhr.respondJSON(200, {}, usersFirstPage);
             }
+
             return true;
           },
         },
@@ -40,10 +48,10 @@ sap.ui.define(
           method: "POST",
           path: /create/,
           response: (oXhr) => {
-            console.log(oXhr)
+            console.log(oXhr);
             oXhr.respondJSON(200, {}, user);
             return true;
-          }
+          },
         },
         {
           method: "PUT",
@@ -51,13 +59,18 @@ sap.ui.define(
           response: (oXhr) => {
             oXhr.respondJSON(200, {}, user);
             return true;
-          }
+          },
         },
         {
           method: "DELETE",
           path: /delete\?userId=(.+)?/,
           response: (oXhr) => {
-            oXhr.respondJSON(204, {}, "");
+            if (oXhr.url.includes("userId=2")) {
+              oXhr.respondJSON(404, {}, "");
+            } else {
+              oXhr.respondJSON(204, {}, "");
+            }
+
             return true;
           },
         },

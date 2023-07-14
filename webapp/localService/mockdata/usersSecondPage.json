@@ -1,42 +1,42 @@
 {
-    "pageNumber": 1,
-    "totalPages": 2,
-    "totalItems": 15,
-    "Users": [
-      {
-        "id": 11,
-        "name": "Patten Statton",
-        "email": "pstattona@theglobeandmail.com",
-        "statusId": 0,
-        "status": "Ativo"
-      },
-      {
-        "id": 12,
-        "name": "Micaela Rickarsey",
-        "email": "mrickarseyb@slashdot.org",
-        "statusId": 0,
-        "status": "Ativo"
-      },
-      {
-        "id": 13,
-        "name": "Micheline McOrkill",
-        "email": "mmcorkillc@bloglines.com",
-        "statusId": 0,
-        "status": "Ativo"
-      },
-      {
-        "id": 14,
-        "name": "Maria Malmar",
-        "email": "mmalmard@flickr.com",
-        "statusId": 1,
-        "status": "Inativo"
-      },
-      {
-        "id": 15,
-        "name": "Richart Stickles",
-        "email": "rsticklese@samsung.com",
-        "statusId": 1,
-        "status": "Inativo"
-      }
-    ]
-  }
+  "pageNumber": 1,
+  "totalPages": 2,
+  "totalItems": 15,
+  "Users": [
+    {
+      "id": 11,
+      "name": "Patten Statton",
+      "email": "pstattona@theglobeandmail.com",
+      "statusId": 0,
+      "status": "Ativo"
+    },
+    {
+      "id": 12,
+      "name": "Micaela Rickarsey",
+      "email": "mrickarseyb@slashdot.org",
+      "statusId": 0,
+      "status": "Ativo"
+    },
+    {
+      "id": 13,
+      "name": "Micheline McOrkill",
+      "email": "mmcorkillc@bloglines.com",
+      "statusId": 0,
+      "status": "Ativo"
+    },
+    {
+      "id": 14,
+      "name": "Maria Malmar",
+      "email": "mmalmard@flickr.com",
+      "statusId": 1,
+      "status": "Inativo"
+    },
+    {
+      "id": 15,
+      "name": "Richart Stickles",
+      "email": "rsticklese@samsung.com",
+      "statusId": 1,
+      "status": "Inativo"
+    }
+  ]
+}

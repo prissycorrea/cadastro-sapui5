@@ -32,29 +32,44 @@
 							visibleInFilterBar="true"
 						>
 							<fb:control>
-								<Input id="nameFilterId" value="{path: 'searchStatus>/name'}"/>
+								<Input
+									id="nameFilterId"
+									value="{
+										path: 'searchStatus>/name'
+									}"
+								/>
 							</fb:control>
 						</fb:FilterGroupItem>
 						<fb:FilterGroupItem
 							groupName="__$INTERNAL$"
 							name="B"
-							label="{i18n>inputEmail}"
+							label="E-mail"
 							partOfCurrentVariant="true"
 							visibleInFilterBar="true"
 						>
 							<fb:control>
-								<Input id="emailFilterId" value="{path: 'searchStatus>/email'}"/>
+								<Input
+									id="emailFilterId"
+									value="{
+										path: 'searchStatus>/email'
+									}"
+								/>
 							</fb:control>
 						</fb:FilterGroupItem>
 						<fb:FilterGroupItem
 							groupName="__$INTERNAL$"
 							name="C"
-							label="{i18n>inputStatus}"
+							label="Status"
 							partOfCurrentVariant="true"
 							visibleInFilterBar="true"
 						>
 							<fb:control>
-								<Select id="statusFilterId" selectedKey="{path: 'searchStatus>/statusId'}">
+								<Select
+									id="statusFilterId"
+									selectedKey="{
+										path: 'searchStatus>/statusId'
+									}"
+								>
 									<items>
 										<core:Item
 											id="allOptions"
@@ -64,12 +79,12 @@
 										<core:Item
 											id="ativoId"
 											key="0"
-											text="{i18n>userStatusActive}"
+											text="Ativo"
 										/>
 										<core:Item
 											id="inativoId"
 											key="1"
-											text="{i18n>userStatusInactive}"
+											text="Inativo"
 										/>
 									</items>
 								</Select>
@@ -88,13 +103,13 @@
 						<content>
 							<Title
 								id="tableId"
-								text="{i18n>tableTitle} ({searchStatus>/totalItems})"
+								text="Usuários ({searchStatus>/totalItems})"
 								level="H2"
 							/>
 							<ToolbarSpacer id="spacer"/>
 							<Button
 								id="createBtn"
-								text="{i18n>buttonNewUser}"
+								text="Novo usuário"
 								icon="sap-icon://add"
 								type="Emphasized"
 								press=".openForm"
@@ -106,23 +121,23 @@
 					<Column id="nameColumns">
 						<Text
 							id="nameText"
-							text="{i18n>inputName}"
+							text="Nome"
 						/>
 					</Column>
 					<Column id="emailColumn">
 						<Text
 							id="emailText"
-							text="{i18n>inputEmail}"
+							text="E-mail"
 						/>
 					</Column>
 					<Column>
-						<Text text="{i18n>inputStatus}"/>
+						<Text text="Status"/>
 					</Column>
 					<Column id="editColumn">
-						<Text text="{i18n>editColumn}"/>
+						<Text text="Editar"/>
 					</Column>
 					<Column id="deleteColumn">
-						<Text text="{i18n>deleteColumn}"/>
+						<Text text="Deletar"/>
 					</Column>
 				</columns>
 				<items>
@@ -136,9 +151,9 @@
 								id="emailCell"
 								text="{users>email}"
 							/>
-							<core:Icon 
-								id="statusCell" 
-								src="{users>statusIcon}" 
+							<core:Icon
+								id="statusCell"
+								src="{users>statusIcon}"
 								color="{users>statusColor}"
 								tooltip="{users>status}"
 							/>
@@ -151,8 +166,8 @@
 							<Button
 								id="deleteBtn"
 								icon="sap-icon://delete"
-								press=".deleteUser(${users>id})"
 								type="Transparent"
+								press=".deleteUser(${users>id})"
 							/>
 						</cells>
 					</ColumnListItem>

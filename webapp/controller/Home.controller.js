@@ -40,7 +40,7 @@ sap.ui.define(
           totalItems,
           name,
           email,
-          statusId
+          statusId,
         });
 
         this._enabledPaginationButton(page, totalPages);
@@ -48,11 +48,10 @@ sap.ui.define(
 
       async onInit() {
         const oBundle = this.getOwnerComponent()
-        .getModel("i18n")
-        .getResourceBundle();
+          .getModel("i18n")
+          .getResourceBundle();
 
         this._updateFilterTexts(oBundle);
-
         this.refresh(this._onDisplay);
       },
 
@@ -90,11 +89,12 @@ sap.ui.define(
 
       editUser(oEvent) {
         const user = oEvent
-        .getSource()
-        .getBindingContext(USERS_MODEL)
-        .getObject();
+          .getSource()
+          .getBindingContext(USERS_MODEL)
+          .getObject();
 
         this.setModel(USER_MODEL, user);
+
         this.openDialog("Form", "dialogId", "sapui5.project.fragments.Form");
       },
 
@@ -106,19 +106,19 @@ sap.ui.define(
           if (user.id) await UserInfo.updateUser(user);
           else await UserInfo.addUser(user);
 
-          MessageBox.success("Operação realizada com sucesso", {
+          MessageBox.success("Operação realizado com sucesso", {
             actions: [MessageBox.Action.OK],
             emphasizedAction: MessageBox.Action.OK,
             onClose: function () {
               that.closeForm();
-            }
+            },
           });
-
         } catch (err) {
-          this.messageBox("error", "Ocorreu um erro ao realizar a operação. Tente novamente.")
+          this.messageBox(
+            "error",
+            "Ocorreu um erro ao realizar a operação. Tente novamente."
+          );
         }
-
-        //this.messageBox("success", "Sucesso")
       },
 
       async deleteUser(userId) {
@@ -137,13 +137,21 @@ sap.ui.define(
       },
 
       searchUser() {
-        const {name, email, statusId} = this.getModelValues(SEARCH_STATUS_MODEL);
+        const { name, email, statusId } =
+          this.getModelValues(SEARCH_STATUS_MODEL);
 
-        Delay.debounce(async () => await this._userUpdate(0, name, email, statusId), 500);
+        Delay.debounce(
+          async () => await this._userUpdate(0, name, email, statusId),
+          500
+        );
       },
 
       clearFilters() {
-        this.updateModel(SEARCH_STATUS_MODEL, {name: "", email: "", statusId: "-1"});
+        this.updateModel(SEARCH_STATUS_MODEL, {
+          name: "",
+          email: "",
+          statusId: "-1",
+        });
       },
 
       openForm() {
@@ -153,7 +161,7 @@ sap.ui.define(
           "sapui5.project.fragments.Form"
         );
 
-        this.setModel(USER_MODEL, {name:"", email:"", statusId:0})
+        this.setModel(USER_MODEL, { name: "", email: "", statusId: 0 });
       },
 
       closeForm() {
